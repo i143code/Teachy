@@ -1,5 +1,5 @@
-teach.controller('loginCtrl', function($scope){
+teachy.controller('loginCtrl', function($scope){
 	
-	
-	
+
+
 })

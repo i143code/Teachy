@@ -16,7 +16,7 @@ teachy.controller('chatCtrl', function($scope, $routeParams){
 
 	chatFactory.retrieveDistrict($routeParams.districtId, function(retrievedDistrict){
 		$scope.district = retrievedDistrict;
-		var search = { found: false; idx: 0 };
+		var search = { found: false, idx: 0 };
 		for (var i = 0; i < retrievedDistrict.channels.length; i++) {
 			if (retrievedDistrict.channels[i].name === "district") {
 				search.found = true;
