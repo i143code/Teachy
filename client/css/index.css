@@ -68,11 +68,12 @@
 
 }
 
-#search{
+/*#search{
 width: 900px;
 height: 60px;
 
-}
+}*/
+
 #main2{
 	display: inline;
 }
@@ -91,7 +92,7 @@ height: 60px;
 
 
 }
-#blue{
+/*#blue{
 width: 1200px;
 height: 800px;
 background-color: blue;
@@ -104,15 +105,15 @@ background-color: blue;
     height: 800px;
    
 
-}
+}*/
 
 #bluebutton{
     margin-left: 540px;
 }
-#messagebox{
+/*#messagebox{
 
 
-}
+}*/
 
 #body1{
     margin-left: 200px;
