@@ -19,7 +19,9 @@ teachy.controller('loginCtrl', function(socket, $scope, $routeParams, loginFacto
 		})
 	})
 	
-	$scope.login = function(){
+	$scope.login = function(email, password){
+		$scope.login.password = password;
+		$scope.login.email = email;
 		loginFactory.login($scope.login.password, $scope.login.email, function(success){
 			if (success.error) {
 				$scope.error = success.error;
