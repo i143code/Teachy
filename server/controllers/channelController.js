@@ -87,7 +87,7 @@ module.exports = {
 						})
 					} else if (req.body.type === 'newUser') {
 						district.channels[idx].messages.push({_user: 'System', message: req.body.userName + " has entered the channel."});
-						district.channels[idx].users.push({req.body.user_id});
+						district.channels[idx].users.push(req.body.user_id);
 						district.save(function(err, district){
 							if (err) {
 								console.log('Error updating channel (3):', err)
