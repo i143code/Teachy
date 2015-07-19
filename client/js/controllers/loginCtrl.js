@@ -1,4 +1,4 @@
-teachy.controller('loginCtrl', function($scope, $routeParams, loginFactory ,$window){
+teachy.controller('loginCtrl', function(socket, $scope, $routeParams, loginFactory ,$window){
 
 	if ($routeParams.userinfo) {
 		$scope.createAccount = $routeParams.userinfo // This variable name will change once the API is integrated
@@ -30,7 +30,7 @@ teachy.controller('loginCtrl', function($scope, $routeParams, loginFactory ,$win
 	}
 
 	$scope.createAccount = function(){
-		loginFactory.createAccount($scope.createAccount, function(success){
+		loginFactory.createAccount($scope.createAccount.email, function(success){
 			if (success.error) {
 				$scope.error = success.error;
 			} else if (success) {

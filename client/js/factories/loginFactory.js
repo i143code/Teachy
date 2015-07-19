@@ -5,7 +5,7 @@ teachy.factory('loginFactory', function($http){
 	factory.createAccount = function(userEmail, callback){
 		var req = {
 			method: 'POST',
-			url: 'https://api.sparkpost.com/api/v1?recipients='+$scope.createAccount.email+'&return_path=signup@email.teachy.co&template_id=verify-email',
+			url: 'https://api.sparkpost.com/api/v1?recipients='+userEmail+'&return_path=signup@email.teachy.co&template_id=verify-email',
 			headers: {
 				'Content-type': 'application/json',
 				'Authorization': 'bb131006635c2ed2e5517ac52b6890f51d41787e'

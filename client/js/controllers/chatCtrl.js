@@ -1,4 +1,4 @@
-teachy.controller('chatCtrl', function($scope, $routeParams, chatFactory) {
+teachy.controller('chatCtrl', function(socket, $scope, $routeParams, chatFactory) {
 	
 	$scope.current;
 	$scope.channel;
