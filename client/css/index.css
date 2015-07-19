@@ -18,6 +18,7 @@
     background: url("../images/background.png");
    background-size: cover;
    height: 900px;
+   background: 009ec2;
 }
 .inner-box h1 {
     color: #199EC0;
@@ -141,12 +142,13 @@ h1 {
   color: 009ec2; 
   position: absolute; 
     width: 400px;  
-    height: 300px;
+    height: 350px;
     background: black; 
     background-color:white;
     margin-left: 700px;
     margin-top: 80px;
     padding: 30px;
+    overflow: hidden;
     /*opacity: 0.10;*/
 
     /*background-color: rgba(255, 255, 255, 0.5);*/*/
@@ -310,6 +312,9 @@ padding-top: 10px
 
 }
 
+#color{
+    background-color: red;
+}
 .left-chat-column{
     background-color: #009ec2;
 }

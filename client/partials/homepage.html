@@ -1,89 +1,87 @@
 <script>
 
-  $('#myModal').on('shown.bs.modal', function () {
-    $('#myInput').focus()
-  })
+ $('#myModal').on('shown.bs.modal', function () {
+   $('#myInput').focus()
+ })
 
- $("#chatMain").scrollTop($("#chatMain")[0].scrollHeight);
+$("#chatMain").scrollTop($("#chatMain")[0].scrollHeight);
 
 </script>
 
 <div class="container" ng-controller='chatCtrl'>
-  <div class="row">
-    <div class="col-md-2" id="left">
-      <h3>Topics</h3>
-      
-        <div ng-repeat='channel in joined'><a href='#/homepage' ng-click='switchChannel(channel.name)'>@{{channel.name}}</a></div>
-      <a href="#/homepage" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span>Create a New Topics</a><br><br><br>
+ <div class="row">
+   <div class="col-md-2" id="left">
+     <h3>Topics</h3>
+     
+       <div ng-repeat='channel in joined'><a href='#/homepage' ng-click='switchChannel(channel.name)'>@{{channel.name}}</a></div>
+     <a href="#/homepage" data-toggle="modal" data-target="#myModal">+ Create new topic</a><br><br><br>
+     <h3>Invite-Only Topics</h3>
+     <a href="#">+ Create invite-only topics</a><br><br><br>
+     <h3>Direct Messages</h3>
+     <a href="#">+ Create direct message</a><br><br><br>
+       <div id="setting">
+         <font size = "3">
+         <a href="#" ><img src="../images/directory.png" height="40px" width="34px" class = "mini-icon"> Staff Directory</a><font size="1"><br /><br /></font>
+         <a href="#" ><img src="../images/setting.png" height="40px" width="40px" class = "mini-icon">Settings</a><font size="1"><br /><br /></font>
+         </font>
+       </div>
 
-      <h3>Invite Only Topics</h3>
-      <a href="#"><span class="glyphicon glyphicon-plus"></span>Create only invite only topics</a><br><br><br>
-      <h3>Direct Messages</h3>
-      <a href="#" ><span class="glyphicon glyphicon-plus"></span> Create new direct message</a><br><br><br>
-        <div id="setting">
-          <font size = "3">
-          <a href="#" ><img src="../images/directory.png" height="40px" width="34px" class = "mini-icon"> Staff Directory</a><font size="1"><br /><br /></font>
-          <a href="#" ><img src="../images/setting.png" height="40px" width="40px" class = "mini-icon">Settings</a><font size="1"><br /><br /></font>
-          </font>
-        </div>
-
-    </div>
-    
+   </div>
+   
 
 <div class="col-md-8">
 
-    <div id='searchBar'>
-       <input type="text" id="chatSearch" class="form-control pull-right" placeholder="Search" ng-model='filter_chat' />
+   <div id='searchBar'>
+      <input type="text" id="chatSearch" class="form-control pull-right" placeholder="Search" ng-model='filter_chat' />
+   </div>
+
+
+   <div id='nameBar'>
+        <span id='channelName'><h3>@{{channel.name}}</h3></span>
+        <div class="btn-group pull-right" data-toggle="buttons">
+           <label class="btn btn-primary">
+             <input type="radio" name="options" id="option2" autocomplete="off">All Messages
+           </label>
+           <label class="btn btn-primary">
+             <input type="radio" name="options" id="option3" autocomplete="off"> Links and Files
+           </label>
+        </div>
+   </div>
+
+   <div id='chatMain'>
+
+     <div class='chatText' ng-repeat='message in channel.messages | filter: filter_chat'><strong>{{message.user}}</strong> - {{message.message}}</div>
+
     </div>
 
-
-    <div id='nameBar'>
-         <span id='channelName'><h3>@{{channel.name}}</h3></span>
-         <div class="btn-group pull-right" data-toggle="buttons">
-            <label class="btn btn-primary">
-              <input type="radio" name="options" id="option2" autocomplete="off">All Messages
-            </label>
-            <label class="btn btn-primary">
-              <input type="radio" name="options" id="option3" autocomplete="off"> Links and Files
-            </label>
-         </div>
-    </div>
-
-    <div id='chatMain'>
-
-      <div class='chatText' ng-repeat='message in channel.messages | filter: filter_chat'><strong>{{message.user}}</strong> - {{message.message}}</div>
-
-     </div>
-
-    
-    <div class="input-group input-group-lg">
-       <input type="text" class="form-control" placeholder="New Message" aria-describedby="sizing-addon1" ng-model='createdMessage'>
-         <span class="input-group-btn">
-           <button class="btn btn-default" ng-click='createMessage()' type="button">Send</button>
-         </span>
-    </div><!-- /.col-lg-6 -->
+   
+   <div class="input-group input-group-lg">
+      <input type="text" class="form-control" placeholder="New Message" aria-describedby="sizing-addon1" ng-model='createdMessage'>
+        <span class="input-group-btn">
+          <button class="btn btn-default" ng-click='createMessage()' type="button">Send</button>
+        </span>
+   </div><!-- /.col-lg-6 -->
 
 </div>
 </div>
-
 
 
 <div class="modal fade" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Create New Topic</h4>
-      </div>
-      <div class="modal-body">
-        <p></p>
-        <input type='text' placeholder='Room Name' ng-model='newChannel.name' class='form-control' />
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click='createChannel()'>Create Channel</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
+ <div class="modal-dialog">
+   <div class="modal-content">
+     <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+       <h4 class="modal-title">Create New Topic</h4>
+     </div>
+     <div class="modal-body">
+       <p></p>
+       <input type='text' placeholder='Room Name' ng-model='newChannel.name' class='form-control' />
+     </div>
+     <div class="modal-footer">
+       <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click='createChannel()'>Create Channel</button>
+     </div>
+   </div><!-- /.modal-content -->
+ </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
 </div>
