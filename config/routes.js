@@ -48,6 +48,10 @@ module.exports = function(app){
 		DistrictController.retrieveDistrict(req, res);
 	})
 
+	app.get('/district/:zip/show', function(req, res){
+		DistrictController.retrieveSchoolsByZip(req, res);
+	})
+
 	app.get('/districts/show', function(req, res){
 		DistrictController.retrieveDistricts(req, res);
 	})

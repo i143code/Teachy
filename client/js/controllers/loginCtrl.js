@@ -1,8 +1,23 @@
-teachy.controller('loginCtrl', function($scope, $routeParams, loginFactory, $window){
+teachy.controller('loginCtrl', function($scope, $routeParams, loginFactory ,$window){
 
 	if ($routeParams.userinfo) {
 		$scope.createAccount = $routeParams.userinfo // This variable name will change once the API is integrated
 	}
+
+	$scope.subject = [];
+	$scope.grades = [];
+
+	$scope.$watch('createAccount.zip', function(){
+		loginFactory.retrieveDistrictSchools($scope.createAccount.zip, function(retrievedSchools){
+			$scope.schools = retrievedSchools.schoolList;
+			$scope.createAccount.district_id = retrievedSchools.districtId;
+			if ($scope.schools.length > 0) {
+				$scope.schoolsreturned = true;
+			} else {
+				$scope.schoolsreturned = false;
+			}
+		})
+	})
 	
 	$scope.login = function(){
 		loginFactory.login($scope.login, function(success){
@@ -24,15 +39,16 @@ teachy.controller('loginCtrl', function($scope, $routeParams, loginFactory, $win
 		})
 	}
 
-	$scope.finishSingUp = function() {
+	$scope.finishSignUp = function() {
 		$window.location.href = '#/finishsignup2'
 	}
 
-	$scope.addedTeacherInfo = function() {
-		$scope.createAccount.first_name = $scope.finishSignup.first_name;
-		$scope.createAccount.last_name = $scope.finishSignup.last_name;
-		$scope.createAccount.subjects = {subject: $scope.finishSignup.subject, grade: $scope.finishSignup.grade}
-		$window.location.href = '#/finishsignup3'
+	$scope.addGradeTaught = function(grade) {
+		$scope.createAccount.grades.push(grade);
+	}
+
+	$scope.addSubjectTaught = function(subject) {
+		$scope.createAccount.subjects.push(subject);
 	}
 
 	$scope.addPassword = function() {

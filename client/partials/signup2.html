@@ -1,23 +1,26 @@
-<div id="body1"> 
+<div id="body1" ng-controller='loginCtrl'> 
 
+<div class='container'>
+	<div class='row'>
+		<div class='col-md-6 col-md-offset-2'>
 <h1>Welcome back!</h1>
 <p>Lets get you all set up in SCHOOL NAME.</p>
 <p>What do you friends call you?</p>
 <form class="form-inline">
   <div class="form-group">
     <label for="exampleInputName2"> First Name</label>
-    <input type="text" class="form-control" id="exampleInputName2" placeholder="First Name">
+    <input type="text" class="form-control" id="exampleInputName2" placeholder="First Name" ng-model='createAccount.first_name' />
   </div>
   <div class="form-group">
     <label for="exampleInputName2">Last Name</label>
-    <input type="text" class="form-control" id="exampleInputName2" placeholder="Last Name">
+    <input type="text" class="form-control" id="exampleInputName2" placeholder="Last Name" ng-model='createAccount.last_name' />
   </div>
 </form>
 <h4>Please select your grades and subjects to help other <br>teachers connect with you.</h4>
 <h4>What grade(s) do you teach?</h4>
 <p>What grade(s) do you teach?</p>
 <p>
-	<button type="button" class="btn btn-primary btn-sm">PK</button>
+	<button type="button" class="btn btn-primary btn-sm" ng-click=''>PK</button>
 	<button type="button" class="btn btn-primary btn-sm">K</button>
 	<button type="button" class="btn btn-primary btn-sm">1st</button>
 	<button type="button" class="btn btn-primary btn-sm">2nd</button>
@@ -60,7 +63,9 @@
 
 
 
-
+</div>
+</div>
+</div>
 
 
 

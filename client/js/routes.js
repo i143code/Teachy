@@ -23,7 +23,6 @@ teachy.config(function($routeProvider){
 		})
 		.otherwise({
 			redirectTo: '/'
-
 		})
 })
 
