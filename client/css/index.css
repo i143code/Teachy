@@ -1,4 +1,22 @@
+.inner-box {
+    padding: 25px;
+    border: 1px solid grey;
+    background-color: white;
+    margin-bottom: 25px;
+}
 
+.inner-box h1 {
+    color: #199EC0;
+}
+
+.inner-box button {
+    background-color: #199EC0;
+    padding: 10px 25px;
+}
+
+.teachy-grey {
+    background-color: #FAFAFA;
+}
 
 #discription{
 	background: blue;

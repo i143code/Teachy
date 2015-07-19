@@ -17,7 +17,33 @@ module.exports = {
 	},
 	createTeacher: function(req, res){
 		var newTeacher = new Teacher({first_name: req.body.first_name, last_name: req.body.last_name, email: req.body.email, password: req.body.password, school: req.body.school});
-
+		newTeacher.subjects = [];
+		newTeacher.grades = [];
+		var search = { found: false }
+		for (var i = 0; i < req.body.grades.length; i++) {
+			for (var j = 0; j < req.body.grades.length; j++) {
+				if (req.body.grades[i] === req.body.grades[j]) {
+					search.found = true
+				}
+				if (!search.found) {
+					newTeacher.grades.push(req.body.grades[i]);
+				} else {
+					search.found = false;
+				}
+			}
+		}
+		for (var k = 0; k < req.body.subjects.length; k++) {
+			for (var m = 0; m < req.body.subjects.length; m++) {
+				if (req.body.subjects[k] === req.body.subjects[m]) {
+					search.found = true;
+				}
+			}
+			if (!search.found) {
+				newTeacher.subjects.push(req.body.subjects[k]);
+			} else {
+				search.found = false;
+			}
+		}
 		newTeacher.save(function(err, teacher){
 			if (err) {
 				console.log('Error creating teacher (1):', err)

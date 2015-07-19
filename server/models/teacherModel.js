@@ -9,7 +9,8 @@ var TeacherSchema = new mongoose.Schema({
 	password: String,
 	_district: { type: Schema.ObjectId, ref: 'District' },
 	school: String,
-	subjects: [{ grade: String, subject: String }],
+	subjects: [{ subject: String }],
+	grades: [{ grade: String }],
 	channels: [{name: String}]
 })
 

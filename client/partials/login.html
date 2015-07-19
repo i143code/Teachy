@@ -1,4 +1,4 @@
-<div id='maincontainer'>
+<div id='maincontainer' ng-controller='loginCtrl'>
 
   <div id="main">
     <nav class="nav nav-tabs">
@@ -7,19 +7,19 @@
       <form class="form-inline" id="main1">
         <div class="form-group">
           <label class="sr-only" for="exampleInputEmail3">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+          <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email" ng-model='login.email' />
         </div>
 
         <div class="form-group">
           <label class="sr-only" for="exampleInputPassword3">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
+          <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password" ng-model='login.password' />
         </div>
         <div class="checkbox">
           <label>
-           <input type="checkbox"> Remember me
+           <input type="checkbox">Remember me
           </label>
         </div>
-        <button type="submit" class="btn btn-default">Sign in</button>
+        <button type="submit" class="btn btn-default" ng-click='login()'>Sign in</button>
       </form>
     </nav>
   
@@ -29,13 +29,18 @@
 	 <form>
 	  <div class="form-group">
 	    <label for="exampleInputEmail1">School-provided Email</label>
-	    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+	    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" ng-model='createAccount.email' />
 	  </div>
 	  <div class="form-group">
 	    <label for="exampleInputFile">School Name</label>
-	    <input type="text" class="form-control" placeholder="Text input">
+	    <input type="text" class="form-control" placeholder="Text input" ng-model='createAccount.zip' />
 	  </div>
-	  <button type="button" class="btn btn-primary">Get Started</button>
+    <div class='form-group'>
+      <select ng-model='createAccount.school' ng-show='schoolsreturned' class='form-control'>
+        <option ng-repeat='school in schools' value='{{school.name}}' ng-bind='school.name'></option>
+      </select>
+    </div>
+	  <button type="button" class="btn btn-primary" ng-click='createAccount()'>Get Started</button>
 	</form>
   </div>
   

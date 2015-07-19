@@ -19,6 +19,13 @@ teachy.factory('loginFactory', function($http){
 			})
 	}
 
+	factory.retrieveDistrictSchools = function(zipToSearch, callback){
+		$http.get('/district/'+zipToSearch+'/show')
+			.success(function(schoolsFound){
+				callback(schoolsFound);
+			})
+	}
+
 	return factory;
 
 })
