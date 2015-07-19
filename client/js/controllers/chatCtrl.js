@@ -62,4 +62,6 @@ teachy.controller('chatCtrl', function(socket, $scope, $routeParams, chatFactory
 		})
 	}
 
+	// Here we will define all of our socket events
+
 })
