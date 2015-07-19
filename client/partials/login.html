@@ -2,8 +2,8 @@
 <div id='maincontainers' ng-controller='loginCtrl' back>
 
   <div id="main">
-    <nav class="nav nav-tabs">
-      <img alt="Brand" src="../images/logo.png" widh="80px" height="80px" padding="10px">
+    <nav class="nav nav-tabs" id="nav">
+      <img alt="Brand" src="../images/logo.png" width="80px" height="80px" padding="10px">
    
       <form class="form-inline" id="main1">
         <div class="form-group">
@@ -15,45 +15,46 @@
           <label class="sr-only" for="exampleInputPassword3">Password</label>
           <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password" ng-model='login.password' />
         </div>
-        <div class="checkbox">
+        <button type="submit" class="btn btn-default" ng-click='login()'>Sign in</button>
+      </form>
+      <div class="checkbox" id="remember">
           <label>
            <input type="checkbox">Remember me
           </label>
         </div>
-        <button type="submit" class="btn btn-default" ng-click='login()'>Sign in</button>
-      </form>
     </nav>
 
 
   <div class="col-md-3" id="Connect">
 	 <form>
+    <h3>Create an account now</h3>
 	  <div class="form-group">
 	    <label for="exampleInputEmail1">School-provided Email</label>
 	    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" ng-model='createAccount.email' />
 	  </div>
 	  <div class="form-group">
 	    <label for="exampleInputFile">School Name</label>
-	    <input type="text" class="form-control" placeholder="Text input" ng-model='createAccount.zip' />
+	    <input type="text" class="form-control" placeholder="Search by zip code" ng-model='createAccount.zip' />
 	  </div>
     <div class='form-group'>
       <select ng-model='createAccount.school' ng-show='schoolsreturned' class='form-control'>
         <option ng-repeat='school in schools' value='{{school.name}}' ng-bind='school.name'></option>
       </select>
     </div>
-	  <button type="button" class="btn btn-primary" ng-click='createAccount()'>Get Started</button>
+	  <button type="button" id="button"class="btn btn-primary" ng-click='createAccount()'>Get Started</button>
 	</form>
   </div>
   
 
   <div  class="col-md-3" id="discription">
-  	<p>Team is a chat app just for team to connect</p>
-  	<p> CONNENEWKJFOEMWF;EWM;</p>
+  	<h2>Teachy is a chat app <br> just for teacher teams</h2>
+    <h4>connect and share with teachers <br>in your school and district</h4>
   </div>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-  	<img alt="Brand" src="../images/logo.png" widh="80px" height="80px">Copyright 2015 </img>
-  </footer>
+<!-- FOOTER -->
+  <div id="footer">
+   <img alt="Brand" src="../images/logo.png" widh="80px" height="80px"> &nbsp;&nbsp;Copyright 2015 </img>
+  </div>
+  
 
 </div>
 </div>

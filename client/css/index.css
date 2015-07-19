@@ -17,7 +17,7 @@
 #maincontainers{
     background: url("../images/background.png");
    background-size: cover;
-   height: 800px;
+   height: 900px;
 }
 .inner-box h1 {
     color: #199EC0;
@@ -71,6 +71,8 @@ h1 {
 #main{
 	width: auto;
 	display: inline-block;
+    margin-top: -15px;
+
 
 }
 #main1{
@@ -128,20 +130,61 @@ h1 {
 #main2{
 	display: inline;
 }
+#middlebutton{
+  margin-left: 50px;
+
+}
 #Connect{
   /*background: blue;*/
+  color: 009ec2; 
   position: absolute; 
     width: 400px;  
-    height: 250px;
+    height: 300px;
     background: black; 
-    color:black;
-    margin-left: 800px;
-    margin-top: 100px;
+    background-color:white;
+    margin-left: 700px;
+    margin-top: 80px;
     padding: 30px;
-    opacity: 0.6;
-    background-color: rgba(255, 255, 255, 0.5);
+    /*opacity: 0.10;*/
+
+    /*background-color: rgba(255, 255, 255, 0.5);*/*/
 
 
+}
+
+#button{
+background-color:#FF7F00; 
+width: 180px;
+border-style: none;
+padding: 12px;
+font-size: 20px;
+/*color:#FF7F00;*/
+
+}
+#nav{
+
+    width:auto;
+    top: 2px;
+}
+#discription{
+
+    position: absolute; 
+    width: 400px;  
+    height: 250px;
+    color:white;
+    /*background: white; */
+    /*background-color:white;*/
+    margin-left: 100px;
+    margin-top: 220px;
+    padding: 30px;
+
+}
+
+#remember{
+
+    margin-left: 690px;
+    margin-top: -20px;
+    color: white;
 }
 #setting{
 
@@ -251,3 +294,13 @@ margin-left: 200px;
 .text-clr2 {
     color:#4c4cff;
 }    
+
+#footer{
+margin-top: 800px;
+color:009ec2;
+margin-left: 120px;
+padding-top: 10px
+
+
+
+}
