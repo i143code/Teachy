@@ -3,8 +3,8 @@ discoverlands.config(function($routeProvider){
 		.when('/', {
 			templateUrl: 'partials/login.html'
 		})
-		.when('/singleartist/:name', {
-			templateUrl: 'partials/singleartist.html'
+		.when('/login', {
+			templateUrl: 'partials/login.html'
 		})
 		.when('/login', {
 			templateUrl: 'partials/login.html'
