@@ -11,7 +11,7 @@ var TeacherSchema = new mongoose.Schema({
 	school: String,
 	subjects: [{ subject: String }],
 	grades: [{ grade: String }],
-	channels: [{name: String}]
+	channels: [{name: String, chanType: String}]
 })
 
 var Teacher = mongoose.model('Teacher', TeacherSchema);

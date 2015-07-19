@@ -7,46 +7,122 @@ teachy.controller('chatCtrl', function(socket, $scope, $routeParams, chatFactory
 	$scope.userLastName;
 	$scope.district;
 
-	chatFactory.retrieveUser($routeParams.userId, function(retrievedUser) {
+	chatFactory.getUser(function(retrievedUser){
 		$scope.userFirstName = retrievedUser.first_name;
 		$scope.userLastName = retrievedUser.last_name;
+		$scope.fullName = $scope.userFirstName + " " + $scope.userLastName;
 		$scope.user_id = retrievedUser._id;
+		chatFactory.retrieveDistrict(retrievedUser.district, function(retrievedDistrict) {
+			$scope.district = retrievedDistrict;
+			var search = { found: false, idx: 0 };
+			for (var i = 0; i < retrievedDistrict.channels.length; i++) {
+				if (retrievedDistrict.channels[i].name === "district") {
+					search.found = true;
+					search.idx = i;
+				}
+			}
+			$scope.current = search.idx;
+			$scope.channel = $scope.district.channels[$scope.current];
+			console.log($scope.channel);
+			chatFactory.joinChannel($scope.district._id, $scope.channel.name, $scope.fullName, $scope.user_id, function(updatedChannel){
+				if (updatedChannel.error) {
+					console.log(updatedChannel.error)
+				} else {
+					$scope.channel = updatedChannel;
+				}
+			})
+		})
 	})
 
-	chatFactory.retrieveDistrict($routeParams.districtId, function(retrievedDistrict) {
-		$scope.district = retrievedDistrict;
-		var search = { found: false, idx: 0 };
-		for (var i = 0; i < retrievedDistrict.channels.length; i++) {
-			if (retrievedDistrict.channels[i].name === "district") {
-				search.found = true;
-				search.idx = i;
-			}
-		}
-		$scope.current = search.idx;
-		$scope.channel = $scope.district.channels[$scope.current];
-	})
+	// Implemented before login was working, leaving just in case
+
+	// chatFactory.retrieveUser('55ab5648c76c77bfc04a5214', function(retrievedUser) {
+	// 	$scope.userFirstName = retrievedUser.first_name;
+	// 	$scope.userLastName = retrievedUser.last_name;
+	// 	$scope.fullName = $scope.userFirstName + " " + $scope.userLastName;
+	// 	$scope.user_id = retrievedUser._id;
+	// 	console.log($scope.userFirstName, $scope.userLastName, $scope.user_id)
+	// })
+
+	// chatFactory.retrieveDistrict('55ab5f06eb20c40ca267104d', function(retrievedDistrict) {
+	// 	$scope.district = retrievedDistrict;
+	// 	var search = { found: false, idx: 0 };
+	// 	for (var i = 0; i < retrievedDistrict.channels.length; i++) {
+	// 		if (retrievedDistrict.channels[i].name === "district") {
+	// 			search.found = true;
+	// 			search.idx = i;
+	// 		}
+	// 	}
+	// 	$scope.current = search.idx;
+	// 	$scope.channel = $scope.district.channels[$scope.current];
+	// })
 
 	$scope.updateChat = function() {
-		chatFactory.updateChat(function(updatedChat){
+		chatFactory.updateChat($scope.district._id, $scope.district.channels[$scope.current].name, function(updatedChat){
 			$scope.channel = updatedChat;
 		})
 	}
 
 	$scope.createMessage = function() {
-		chatFactory.createMessage($scope.newMessage, function(updatedChat){
+		console.log('we are here');
+		console.log($scope.district._id);
+		console.log($scope.current);
+		console.log($scope.district.channels[$scope.current]);
+		chatFactory.createMessage($scope.district._id, $scope.district.channels[$scope.current].name, $scope.fullName, $scope.createdMessage, function(updatedChat){
 			$scope.channel = updatedChat;
+			$scope.createdMessage = '';
 		})
+		socket.emit('new_message', {channel: $scope.channel.name, user: $scope.fullName, district: $scope.district._id})
 	}
 
 	$scope.switchChannel = function() {
-		chatFactory.retrieveChannel($scope.channel, function(newChannel){
+		chatFactory.retrieveChannel($scope.district._id, $scope.switchedChannel, function(newChannel){
 			$scope.channel = newChannel;
+			$scope.switchedChannel = '';
+			chatFactory.retrieveDistrict($scope.district._id, function(retrievedDistrict) {
+				$scope.district = retrievedDistrict;
+				var search = { found: false, idx: 0 };
+				for (var i = 0; i < retrievedDistrict.channels.length; i++) {
+					if (retrievedDistrict.channels[i].name === $scope.channel.name) {
+						search.found = true;
+						search.idx = i;
+					}
+				}
+				$scope.current = search.idx;
+				$scope.channel = $scope.district.channels[$scope.current];
+				chatFactory.joinChannel($scope.district._id, $scope.channel.name, $scope.fullName, function(updatedChannel){
+					if (updatedChannel.error) {
+					console.log(updatedChannel.error)
+				} else {
+					$scope.channel = updatedChannel;
+				}
+				})
+			})
 		})
 	}
 
 	$scope.createChannel = function() {
-		chatFactory.createChannel($scope.newChannel, function(createdChannel){
+		chatFactory.createChannel($scope.district._id, $scope.user_id, $scope.newChannel, function(createdChannel){
 			$scope.channel = createdChannel;
+			chatFactory.retrieveDistrict($scope.district._id, function(retrievedDistrict) {
+				$scope.district = retrievedDistrict;
+				var search = { found: false, idx: 0 };
+				for (var i = 0; i < retrievedDistrict.channels.length; i++) {
+					if (retrievedDistrict.channels[i].name === $scope.channel.name) {
+						search.found = true;
+						search.idx = i;
+					}
+				}
+				$scope.current = search.idx;
+				$scope.channel = $scope.district.channels[$scope.current];
+				chatFactory.joinChannel($scope.district._id, $scope.channel.name, $scope.fullName, function(updatedChannel){
+					if (updatedChannel.error) {
+						console.log(updatedChannel.error)
+					} else {
+						$scope.channel = updatedChannel;
+					}
+				})
+			})
 		})
 	}
 
@@ -63,5 +139,20 @@ teachy.controller('chatCtrl', function(socket, $scope, $routeParams, chatFactory
 	}
 
 	// Here we will define all of our socket events
+
+	socket.on('update_chat', function(data){
+		chatFactory.retrieveDistrict('55ab5f06eb20c40ca267104d', function(retrievedDistrict) {
+				$scope.district = retrievedDistrict;
+				var search = { found: false, idx: 0 };
+				for (var i = 0; i < retrievedDistrict.channels.length; i++) {
+					if (retrievedDistrict.channels[i].name === $scope.channel.name) {
+						search.found = true;
+						search.idx = i;
+					}
+				}
+				$scope.current = search.idx;
+				$scope.channel = $scope.district.channels[$scope.current];
+			})
+	})
 
 })

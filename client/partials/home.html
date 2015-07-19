@@ -1,6 +1,6 @@
 
-<div class="row">
-	<div class="col-md-1" id="red">hi
+<div class="row" ng-controller='chatCtrl'>
+	<div class="col-md-1" id="red">
 		<a href=""><img src="../images/setting.png" id="settings" width="40px" height="40px"></a>
 
 
@@ -37,21 +37,34 @@
 
      	<div class="col-md-6" id="messagebox">
         <h1>Hi</h1>
-
+        <p ng-repeat='message in channel.messages'>{{message.user}} - {{message.message}}</p>
 		</div>
 
 
 
      	<div class="col-md-8" id="messagebox2">
 
-        <input class="input-block-level" id="search" type="text" placeholder=".input-block-level">
-        <button type="button" class="btn btn-primary">Send</button>
+        <input class="input-block-level" id="search" type="text" placeholder="Type a message" ng-model='createdMessage' />
+        <button type="button" class="btn btn-primary" ng-click='createMessage()'>Send</button>
+
 
 		</div>
 
+        <div>
+            <input type='text' placeholder='new room' ng-model='newChannel.name' />
+            <button ng-click='createChannel()'>Create Channel</button>
+        </div>
+
+        <div>
+            <input type='text' placeholder='switch rooms' ng-model='switchedChannel' />
+            <button ng-click='switchChannel()'>Switch Channel</button>
+        </div>
 
 
 
+        <div>
+            <p ng-repeat='user in channel.users' ng-bind='user.name'></p>
+        </div>
 
 
 
@@ -72,3 +85,4 @@
 
  
 </div>
+

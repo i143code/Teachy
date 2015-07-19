@@ -1,6 +1,16 @@
 teachy.factory('chatFactory', function($http){
 	
+	var user;
+
 	var factory = {}
+
+	factory.setUser = function(retrievedUser){
+		user = retrievedUser;
+	}
+
+	factory.getUser = function(callback){
+		callback(user);
+	}
 
 	factory.retrieveUser = function(user_id, callback){
 		$http.get('/teachers/'+user_id+'/show')
@@ -13,18 +23,20 @@ teachy.factory('chatFactory', function($http){
 		$http.get('/districts/'+district_id+'/show')
 			.success(function(retrievedDistrict){
 				callback(retrievedDistrict);
+
 			})
 	}
 
-	factory.updateChat = function(district_id, channel_id, callback){
-		$http.get('/channels/'+district_id+'/'+channel_id+'/show')
+	factory.updateChat = function(district_id, channel_name, callback){
+		console.log('dist_id', district_id);
+		$http.get('/channels/'+district_id+'/'+channel_name+'/show')
 			.success(function(updatedChat){
 				callback(updatedChat);
 			})
 	}
 
-	factory.createMessage = function(district_id, channel_id, newMessage, callback){
-		$http.post('/channels/'+district_id+'/'+channel_id+'/update', newMessage)
+	factory.createMessage = function(district_id, channel_id, userName, newMessage, callback){
+		$http.post('/channels/'+district_id+'/'+channel_id+'/update', {message: newMessage, type: 'newMessage', user: userName})
 			.success(function(updatedChat){
 				callback(updatedChat)
 			})
@@ -53,6 +65,13 @@ teachy.factory('chatFactory', function($http){
 
 	factory.createInviteOnlyTopic = function(district_id, creating_user, newTopic, callback){
 		// TBDone
+	}
+
+	factory.joinChannel = function(district_id, channel_id, userName, userId, callback){
+		$http.post('/channels/'+district_id+'/'+channel_id+'/update', {type: 'newUser', user: userName, user_id: userId})
+			.success(function(updatedChat){
+				callback(updatedChat)
+			})
 	}
 
 	return factory;

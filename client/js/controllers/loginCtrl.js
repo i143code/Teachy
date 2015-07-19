@@ -1,4 +1,4 @@
-teachy.controller('loginCtrl', function(socket, $scope, $routeParams, loginFactory ,$window){
+teachy.controller('loginCtrl', function(socket, $scope, $routeParams, loginFactory, chatFactory ,$window){
 
 	if ($routeParams.userinfo) {
 		$scope.createAccount = $routeParams.userinfo // This variable name will change once the API is integrated
@@ -20,11 +20,12 @@ teachy.controller('loginCtrl', function(socket, $scope, $routeParams, loginFacto
 	})
 	
 	$scope.login = function(){
-		loginFactory.login($scope.login, function(success){
+		loginFactory.login($scope.login.password, $scope.login.email, function(success){
 			if (success.error) {
 				$scope.error = success.error;
 			} else if (success) {
-				$window.location.href = '#/chat';
+				chatFactory.setUser(success);
+				$window.location.href = '#/home';
 			}
 		})
 	}

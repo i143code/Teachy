@@ -6,6 +6,10 @@ module.exports = function(server){
 
 		console.log('New Socket Connection:', socket.id)
 
+		socket.on('new_message', function(data){
+			io.emit('update_chat');
+		})
+
 	})
 
 }

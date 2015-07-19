@@ -16,10 +16,8 @@ module.exports = {
 			})
 	},
 	retrieveChannel: function(req, res){
-		District.findOne({_id: req.params.district})
-			.populate('_user')
-			.execute(function(err, district){
-				if (err) {
+		District.findOne({_id: req.params.district}, function(err, district){
+			if (err) {
 					console.log('Error retrieving channel', err);
 				} else {
 					var search = { found: false, idx: 0}
@@ -35,7 +33,7 @@ module.exports = {
 						res.json({error: "Channel doesn't exist! How did you do that!"})
 					}
 				}
-			})
+		})
 	},
 	createChannel: function(req, res){
 		District.findOne({_id: req.params.district}, function(err, district){
@@ -64,6 +62,7 @@ module.exports = {
 		})
 	},
 	updateChannel: function(req, res){
+		console.log('req.params.district',req.params.district)
 		District.findOne({_id: req.params.district}, function(err, district){
 			if (err) {
 				console.log('Error updating channel (1)', err);
@@ -77,7 +76,7 @@ module.exports = {
 				}
 				if (search.found) {
 					if (req.body.type === 'newMessage') {
-						district.channels[idx].messages.push({_user: req.body.user_id, message: req.body.message})
+						district.channels[search.idx].messages.push({user: req.body.user, message: req.body.message})
 						district.save(function(err, district){
 							if (err) {
 								console.log('Error updating channel (2):', err);
@@ -86,15 +85,39 @@ module.exports = {
 							}
 						})
 					} else if (req.body.type === 'newUser') {
-						district.channels[idx].messages.push({_user: 'System', message: req.body.userName + " has entered the channel."});
-						district.channels[idx].users.push(req.body.user_id);
-						district.save(function(err, district){
-							if (err) {
-								console.log('Error updating channel (3):', err)
-							} else {
-								res.json(district.channels[search.idx]);
+						var dupUser = { found: false, idx: 0 }
+						for (var k = 0; k < district.channels[search.idx].users.length; k++) {
+							if (district.channels[search.idx].users[k].name === req.body.user) {
+								dupUser.found = true;
+								dupUser.idx = k;
 							}
-						})
+						}
+						if (dupUser.found) {
+							res.json({error: "User already in this room! How did you do that!?"})
+						} else {
+							district.channels[search.idx].messages.push({user: 'Teachy', message: req.body.user + " has entered."});
+							district.channels[search.idx].users.push({name: req.body.user});
+							district.save(function(err, district){
+								if (err) {
+									console.log('Error updating channel (3):', err)
+								} else {
+									Teacher.findOne({_id: req.body.user_id}, function(err, teacher){
+										if (err) {
+											console.log('Error updating channel (4):', err);
+										} else {
+											teacher.channels.push({name: district.channels[search.idx].name, type: 'public'})
+											teacher.save(function(err, teacher){
+												if (err) {
+													console.log('Error updating channel (5):', err)
+												} else {
+													res.json(district.channels[search.idx]);
+												}
+											})
+										}
+									})
+								}
+							})
+						}
 					} else if (req.body.type === 'exitChannel') {
 						var userSearch = { found: false, idx: 0 };
 						for (var j = 0; j < district.channels[search.idx].users.length; j++) {

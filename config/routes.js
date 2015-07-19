@@ -34,8 +34,9 @@ module.exports = function(app){
 	})
 
 	app.post('/channels/:district/:channel/update', function(req, res){
+		console.log('routes', req.params.district);
 		// For entering or exiting room
-		RoomController.updateChannel(req, res);
+		ChannelController.updateChannel(req, res);
 	})
 
 	app.get('/channels/:district/all', function(req, res){

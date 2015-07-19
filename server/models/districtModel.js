@@ -8,11 +8,9 @@ var DistrictSchema = new mongoose.Schema({
 	teachers: [{ type: Schema.Types.ObjectId, ref: 'Teacher' }],
 	channels: [{
 		name: String, 
-		users: [{
-			type: Schema.Types.ObjectId, ref: 'Teacher'
-		}], 
+		users: [{name: String}], 
 		messages: [{
-			_user: { type: Schema.ObjectId, ref: 'Teacher' }, 
+			user: String, 
 			message: String, 
 			created: {type: Date, default: Date.now}
 		}],

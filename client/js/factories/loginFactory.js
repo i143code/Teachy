@@ -26,6 +26,13 @@ teachy.factory('loginFactory', function($http){
 			})
 	}
 
+	factory.login = function(password, email, callback){
+		$http.post('/login', {email: email, password: password})
+			.success(function(loggedInTeacher){
+				callback(loggedInTeacher);
+			})
+	}
+
 	return factory;
 
 })

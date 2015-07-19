@@ -9,23 +9,14 @@ module.exports = {
 			if (err) {
 				console.log('Error retrieving district (1):', err)
 			} else {
-				Teacher.populate(docs, {
-					path: 'channels.users',
+				Teacher.populate(district, {
+					path: 'teachers',
 					select: 'first_name last_name'
 				}, function(err, district){
 					if (err) {
-						console.log('Error retrieving district (2):', err);
+						console.log('Error retrieving district (3):', err)
 					} else {
-						Teacher.populate(docs, {
-							path: 'teachers',
-							select: 'first_name last_name'
-						}, function(err, district){
-							if (err) {
-								console.log('Error retrieving district (3):', err)
-							} else {
-								res.json(district);
-							}
-						})
+						res.json(district);
 					}
 				})
 			}

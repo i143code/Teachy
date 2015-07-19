@@ -5,9 +5,10 @@ var District = mongoose.model('District');
 
 module.exports = {
 	retrieveTeacher: function(req, res){
+		console.log('requesting teacher', req.params.id);
 		Teacher.findOne({_id: req.params.id})
 			.populate('_district')
-			.execute(function(err, teacher){
+			.exec(function(err, teacher){
 				if (err) {
 					console.log('Error retrieving teacher:', err)
 				} else {
