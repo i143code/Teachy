@@ -3,10 +3,13 @@ teachy.config(function($routeProvider){
 		.when('/', {
 			templateUrl: 'partials/login.html'
 		})
+<<<<<<< HEAD
 
 		.when('/signup', {
 			templateUrl: 'partials/signup.html'
 
+=======
+>>>>>>> 48b13e92216c982ddfb9ee36d3e3a0333c007bc4
 		.when('/checkemail', {
 			templateUrl: 'partials/checkemail.html'
 		})
@@ -26,6 +29,10 @@ teachy.config(function($routeProvider){
 			templateUrl: 'partials/chat.html'
 		})
 		.otherwise({
+<<<<<<< HEAD
 			// redirectTo: '/'
+=======
+			redirectTo: '/'
+>>>>>>> 48b13e92216c982ddfb9ee36d3e3a0333c007bc4
 		})
 })
