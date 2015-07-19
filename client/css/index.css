@@ -68,11 +68,12 @@
 
 }
 
-#search{
+/*#search{
 width: 900px;
 height: 60px;
 
-}
+}*/
+
 #main2{
 	display: inline;
 }
@@ -91,8 +92,13 @@ height: 60px;
 
 
 }
+<<<<<<< HEAD
 #blue{
 width: 800px;
+=======
+/*#blue{
+width: 1200px;
+>>>>>>> 6de947330e54c3da2cadaaaebc35d91924a8435e
 height: 800px;
 background-color: blue;
 
@@ -104,15 +110,15 @@ background-color: blue;
     height: 800px;
    
 
-}
+}*/
 
 #bluebutton{
     margin-left: 540px;
 }
-#messagebox{
+/*#messagebox{
 
 
-}
+}*/
 
 #body1{
     margin-left: 200px;
