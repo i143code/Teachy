@@ -36,10 +36,14 @@ teachy.controller('loginCtrl', function(socket, $scope, $routeParams, loginFacto
 		loginFactory.createAccount($scope.createAccount.email, $scope.createAccount.school, function(success){
 			if (success.error) {
 				$scope.error = success.error;
+				$window.location.href = '/#/confirm';
 			} else if (success) {
+				$window.location.href = '/#/confirm';
+			} else {
 				$window.location.href = '#/confirm';
 			}
 		})
+		$window.location.href = '#/confirm';
 	}
 
 	$scope.finishSignUp = function() {
