@@ -15,14 +15,36 @@ module.exports = {
 				}
 			})
 	},
+	retrieveChannel: function(req, res){
+		District.findOne({_id: req.params.district})
+			.populate('_user')
+			.execute(function(err, district){
+				if (err) {
+					console.log('Error retrieving channel', err);
+				} else {
+					var search = { found: false, idx: 0}
+					for (var i = 0; i < district.channels.length; i++) {
+						if (district.channels[i].name === req.params.channel) {
+							search.found = true;
+							search.idx = i;
+						}
+					}
+					if (search.found) {
+						res.json(district.channels[search.idx]);
+					} else {
+						res.json({error: "Channel doesn't exist! How did you do that!"})
+					}
+				}
+			})
+	},
 	createChannel: function(req, res){
-		District.findOne({_id: req.params.id}, function(err, district){
+		District.findOne({_id: req.params.district}, function(err, district){
 			if (err) {
 				console.log('Error creating channel (1):', err);
 			} else {
 				var search = { found: false, idx: 0 };
 				for (var i = 0; i < district.channels.length; i++) {
-					if (district.channels[i].name === req.body.channel) {
+					if (district.channels[i].name === req.body.channelName) {
 						search.found = true
 					}
 				}
@@ -34,7 +56,7 @@ module.exports = {
 						if (err) {
 							console.log('Error creating channel (2):', err);
 						} else {
-							res.json(district);
+							res.json(district.channels[district.channels.length-1]);
 						}
 					})
 				}
@@ -42,13 +64,13 @@ module.exports = {
 		})
 	},
 	updateChannel: function(req, res){
-		District.findOne({_id: req.params.id}, function(err, district){
+		District.findOne({_id: req.params.district}, function(err, district){
 			if (err) {
 				console.log('Error updating channel (1)', err);
 			} else {
 				var search = { found: false, idx: 0 }
 				for (var i = 0; i < district.channels.length; i++) {
-					if (district.channels[i].name === req.body.channel) {
+					if (district.channels[i].name === req.params.channel) {
 						search.found = true
 						search.idx = i;
 					}

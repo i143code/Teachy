@@ -75,5 +75,15 @@ module.exports = {
 				}
 			}
 		})
+	},
+	loginTeacher: function(req, res){
+		Teacher.findOne({email: req.body.email, password: req.body.password}, function(err, teacher){
+			if (err) {
+				console.log('Error loggin in teacher (1):', err);
+				res.json({error: "Login failed!"});
+			} else {
+				res.json(teacher);
+			}
+		})
 	}
 }

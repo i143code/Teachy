@@ -1,3 +1,7 @@
+var ChannelController = require('../server/controllers/channelController.js');
+var TeacherController = require('../server/controllers/teacherController.js');
+var DistrictController = require('../server/controller/districtController.js');
+
 module.exports = function(app){
 	
 	// Teacher Routes
@@ -14,18 +18,22 @@ module.exports = function(app){
 		TeacherController.createTeacher(req, res);
 	})
 
+	app.post('/login', function(req, res){
+		TeacherController.loginTeacher(req, res);
+	})
+
 	// Channel Routes
-	app.post('/channels/new', function(req, res){
+	app.post('/channels/:district/new', function(req, res){
 		// For creating a room that doesn't exist
 		ChannelController.createChannel(req, res);
 	})
 
-	app.get('/channels/:id/show', function(req, res){
+	app.get('/channels/:district/:channel/show', function(req, res){
 		// For getting information about a specific room
 		ChannelController.retrieveChannel(req, res);
 	})
 
-	app.post('/channels/:id/update', function(req, res){
+	app.post('/channels/:district/:channel/update', function(req, res){
 		// For entering or exiting room
 		RoomController.updateChannel(req, res);
 	})

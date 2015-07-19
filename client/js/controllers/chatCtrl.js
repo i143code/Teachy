@@ -1,20 +1,19 @@
-teachy.controller('chatCtrl', function($scope, $routeParams){
+teachy.controller('chatCtrl', function($scope, $routeParams, chatFactory) {
 	
 	$scope.current;
-	$scope.messages = [];
-	$scope.users = [];
+	$scope.channel;
 	$scope.user_id;
 	$scope.userFirstName;
 	$scope.userLastName;
 	$scope.district;
 
-	chatFactory.retrieveUser($routeParams.userId, function(retrievedUser){
+	chatFactory.retrieveUser($routeParams.userId, function(retrievedUser) {
 		$scope.userFirstName = retrievedUser.first_name;
 		$scope.userLastName = retrievedUser.last_name;
 		$scope.user_id = retrievedUser._id;
 	})
 
-	chatFactory.retrieveDistrict($routeParams.districtId, function(retrievedDistrict){
+	chatFactory.retrieveDistrict($routeParams.districtId, function(retrievedDistrict) {
 		$scope.district = retrievedDistrict;
 		var search = { found: false, idx: 0 };
 		for (var i = 0; i < retrievedDistrict.channels.length; i++) {
@@ -24,13 +23,42 @@ teachy.controller('chatCtrl', function($scope, $routeParams){
 			}
 		}
 		$scope.current = search.idx;
-		$scope.messages = $scope.district.channels[$scope.current].messages
-		$scope.users = $scope.district.channels
+		$scope.channel = $scope.district.channels[$scope.current];
 	})
 
-	$scope.updateChat = function(){
+	$scope.updateChat = function() {
 		chatFactory.updateChat(function(updatedChat){
-			$scope.messages
+			$scope.channel = updatedChat;
+		})
+	}
+
+	$scope.createMessage = function() {
+		chatFactory.createMessage($scope.newMessage, function(updatedChat){
+			$scope.channel = updatedChat;
+		})
+	}
+
+	$scope.switchChannel = function() {
+		chatFactory.retrieveChannel($scope.channel, function(newChannel){
+			$scope.channel = newChannel;
+		})
+	}
+
+	$scope.createChannel = function() {
+		chatFactory.createChannel($scope.newChannel, function(createdChannel){
+			$scope.channel = createdChannel;
+		})
+	}
+
+	$scope.createDirectMessage = function() {
+		chatFactory.createDirectMessage($scope.newDirectMessage, function(createdDirectMessage){
+			$scope.channel = createdDirectMessage;
+		})
+	}
+
+	$scope.createInviteOnlyTopic = function() {
+		chatFactory.createInviteOnlyTopic($scope.newInviteOnlyTopic, function(createdInviteOnlyTopic){
+			$scope.channel = cratedInviteOnlyTopic;
 		})
 	}
 
