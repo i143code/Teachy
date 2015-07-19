@@ -2,7 +2,7 @@ teachy.factory('loginFactory', function($http){
 	
 	var factory = {};
 
-	factory.createAccount = function(userEmail, callback){
+	factory.createAccount = function(userEmail, chosenSchool, callback){
 		// var req = {
 		// 	method: 'POST',
 		// 	host: 'https://api.sparkpost.com/api/v1?recipients='+userEmail+'&return_path=signup@email.teachy.co&template_id=verify-email',
@@ -18,7 +18,7 @@ teachy.factory('loginFactory', function($http){
 		// 		callback(response)
 		// 	})
 	
-		$http.post('/signup', {userEmail: userEmail})
+		$http.post('/signup', {userEmail: userEmail, school: chosenSchool})
 			.success(function(response){
 				console.log(response);
 			})

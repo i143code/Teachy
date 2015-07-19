@@ -31,7 +31,7 @@ teachy.controller('loginCtrl', function(socket, $scope, $routeParams, loginFacto
 	}
 
 	$scope.createAccount = function(){
-		loginFactory.createAccount($scope.createAccount.email, function(success){
+		loginFactory.createAccount($scope.createAccount.email, $scope.createAccount.school, function(success){
 			if (success.error) {
 				$scope.error = success.error;
 			} else if (success) {
