@@ -3,13 +3,36 @@ teachy.config(function($routeProvider){
 		.when('/', {
 			templateUrl: 'partials/login.html'
 		})
-<<<<<<< HEAD
-
 		.when('/signup', {
 			templateUrl: 'partials/signup.html'
+		})
+		.when('/signup2',{
 
-=======
->>>>>>> 48b13e92216c982ddfb9ee36d3e3a0333c007bc4
+              templateUrl:'partials/signup2.html'
+
+		})	
+		.when('/signup3',{
+
+              templateUrl:'partials/signup3.html'
+
+		})
+
+		.when('/signup4',{
+
+              templateUrl:'partials/signup4.html'
+
+		})
+		.when('/home',{
+
+              templateUrl:'partials/home.html'
+
+		})
+		.when('/homepage',{
+
+              templateUrl:'partials/homepage.html'
+
+		})
+
 		.when('/checkemail', {
 			templateUrl: 'partials/checkemail.html'
 		})
@@ -28,11 +51,10 @@ teachy.config(function($routeProvider){
 		.when('/chat', {
 			templateUrl: 'partials/chat.html'
 		})
+
 		.otherwise({
-<<<<<<< HEAD
-			// redirectTo: '/'
-=======
 			redirectTo: '/'
->>>>>>> 48b13e92216c982ddfb9ee36d3e3a0333c007bc4
+
 		})
 })
+
