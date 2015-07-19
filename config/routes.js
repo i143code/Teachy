@@ -1,6 +1,6 @@
 var ChannelController = require('../server/controllers/channelController.js');
 var TeacherController = require('../server/controllers/teacherController.js');
-var DistrictController = require('../server/controller/districtController.js');
+var DistrictController = require('../server/controllers/districtController.js');
 
 module.exports = function(app){
 	
