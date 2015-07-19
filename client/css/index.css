@@ -14,9 +14,16 @@
     background-color:rgba(255,0,0,0.5);
 
 }
+
+#maincontainer {
+	/*background: url("../images/background.png");*/
+	background-color: yellow;
+}
+
 #main{
 	width: auto;
 	display: inline-block;
+
 }
 #main1{
 	margin-left: 600px;
