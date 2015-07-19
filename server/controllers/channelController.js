@@ -49,7 +49,7 @@ module.exports = {
 				if (search.found) {
 					res.json({error: "Channel already exists!"});
 				} else {
-					district.channels.push({name: req.body.channelName, users: [req.body.user_id], messages: [], districtWide: req.body.districtWide, directMessage: req.body.directMessage});
+					district.channels.push({name: req.body.channelName, users: [{name: req.body.user}], messages: [], districtWide: req.body.districtWide, directMessage: req.body.directMessage});
 					district.save(function(err, district){
 						if (err) {
 							console.log('Error creating channel (2):', err);

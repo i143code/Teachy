@@ -1,5 +1,5 @@
 
-<div class="row">
+<div class="row" ng-controller='chatCtrl'>
 
 	<div class="col-md-" id="red">
 
@@ -70,6 +70,9 @@
             <p ng-repeat='user in channel.users' ng-bind='user.name'></p>
         </div>
 
+        <div>
+            <p ng-repeat='channel in joined' ng-bind='channel.name'></p>
+        </div>
 
 
 
