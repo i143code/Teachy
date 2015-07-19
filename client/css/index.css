@@ -8,7 +8,7 @@
 #maincontainers{
     background: url("../images/background.png");
    background-size: cover;
-   height: 900px;
+   height: 800px;
 }
 .inner-box h1 {
     color: #199EC0;
@@ -23,9 +23,14 @@
     background-color: #FAFAFA;
 }
 
+p {
+    font-family: "Times New Roman", Times, serif;
+}
+h1 {
+    font-family: "Arial Black", Gadget, sans-serif;
 }
 #discription{
-	background: blue;
+	/*background: blue;
   position: absolute; 
     width: 400px;  
     height: 250px;
@@ -35,7 +40,7 @@
     margin-top: 100px;
     padding: 30px;
     opacity: 0.6;
-    background-color:rgba(255,0,0,0.5);
+    background-color:rgba(255,0,0,0.5);*/
 
 }
 
