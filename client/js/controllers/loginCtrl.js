@@ -25,7 +25,7 @@ teachy.controller('loginCtrl', function(socket, $scope, $routeParams, loginFacto
 				$scope.error = success.error;
 			} else if (success) {
 				chatFactory.setUser(success);
-				$window.location.href = '#/home';
+				$window.location.href = '#/homepage';
 			}
 		})
 	}

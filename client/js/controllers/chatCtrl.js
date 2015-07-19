@@ -1,4 +1,6 @@
 teachy.controller('chatCtrl', function(socket, $scope, $routeParams, chatFactory) {
+
+	console.log('chatCtrl');		
 	
 	$scope.current;
 	$scope.channel;
@@ -6,12 +8,14 @@ teachy.controller('chatCtrl', function(socket, $scope, $routeParams, chatFactory
 	$scope.userFirstName;
 	$scope.userLastName;
 	$scope.district;
+	$scope.joined;
 
 	chatFactory.getUser(function(retrievedUser){
 		$scope.userFirstName = retrievedUser.first_name;
 		$scope.userLastName = retrievedUser.last_name;
 		$scope.fullName = $scope.userFirstName + " " + $scope.userLastName;
 		$scope.user_id = retrievedUser._id;
+		$scope.joined = retrievedUser.channels;
 		chatFactory.retrieveDistrict(retrievedUser.district, function(retrievedDistrict) {
 			$scope.district = retrievedDistrict;
 			var search = { found: false, idx: 0 };
@@ -29,6 +33,8 @@ teachy.controller('chatCtrl', function(socket, $scope, $routeParams, chatFactory
 					console.log(updatedChannel.error)
 				} else {
 					$scope.channel = updatedChannel;
+					console.log($scope.joined);
+					$scope.joined.push({name: $scope.channel.name})
 				}
 			})
 		})
@@ -75,7 +81,11 @@ teachy.controller('chatCtrl', function(socket, $scope, $routeParams, chatFactory
 		socket.emit('new_message', {channel: $scope.channel.name, user: $scope.fullName, district: $scope.district._id})
 	}
 
-	$scope.switchChannel = function() {
+	$scope.switchChannel = function(channel) {
+		if (!$scope.switchedChannel) {
+			$scope.switchedChannel = channel;
+		}
+		console.log($scope.switchedChannel);
 		chatFactory.retrieveChannel($scope.district._id, $scope.switchedChannel, function(newChannel){
 			$scope.channel = newChannel;
 			$scope.switchedChannel = '';
@@ -90,11 +100,13 @@ teachy.controller('chatCtrl', function(socket, $scope, $routeParams, chatFactory
 				}
 				$scope.current = search.idx;
 				$scope.channel = $scope.district.channels[$scope.current];
-				chatFactory.joinChannel($scope.district._id, $scope.channel.name, $scope.fullName, function(updatedChannel){
+				chatFactory.joinChannel($scope.district._id, $scope.channel.name, $scope.fullName, $scope.user_id, function(updatedChannel){
 					if (updatedChannel.error) {
 					console.log(updatedChannel.error)
 				} else {
 					$scope.channel = updatedChannel;
+					console.log($scope.joined);
+					$scope.joined.push({name: $scope.channel.name})
 				}
 				})
 			})
@@ -115,11 +127,21 @@ teachy.controller('chatCtrl', function(socket, $scope, $routeParams, chatFactory
 				}
 				$scope.current = search.idx;
 				$scope.channel = $scope.district.channels[$scope.current];
-				chatFactory.joinChannel($scope.district._id, $scope.channel.name, $scope.fullName, function(updatedChannel){
+				chatFactory.joinChannel($scope.district._id, $scope.channel.name, $scope.fullName, $scope.user_id, function(updatedChannel){
 					if (updatedChannel.error) {
 						console.log(updatedChannel.error)
 					} else {
 						$scope.channel = updatedChannel;
+						console.log($scope.joined);
+						var chanSearch = { found: false, idx: 0 };
+						for (var x = 0; x < $scope.joined.length; x++) {
+							if ($scope.joined[x].name === $scope.channel.name) {
+								chanSearch.found = true
+							}
+						}
+						if (!chanSearch.found){
+							$scope.joined.push({name: $scope.channel.name})
+						}
 					}
 				})
 			})
