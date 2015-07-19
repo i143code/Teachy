@@ -1,3 +1,5 @@
+var https = require('https');
+var queryString = require('querystring');
 var mongoose = require('mongoose');
 
 var Teacher = mongoose.model('Teacher');
@@ -112,5 +114,44 @@ module.exports = {
 				res.json(teacher);
 			}
 		})
+	},
+	signupTeacher: function(req, res){
+		console.log(req.body.userEmail);
+
+		var postData = queryString.stringify({
+			'recipients': 'johnhalbert@gmail.com',
+			'return_path': 'signup@email.teachy.co',
+			'template_id': 'verify-email'
+		})
+
+		var options = {
+			method: 'POST',
+			hostname: 'api.sparkpost.com',
+			path: '/api/v1/transmissions',
+			json: true,
+			headers: {
+				'Content-type': 'application/json',
+				'Authorization': 'bb131006635c2ed2e5517ac52b6890f51d41787e'
+			}
+		}
+
+		var request = https.request(options, function(response){
+			console.log('STATUS:', response.statusCode);
+			console.log('HEADERS:', JSON.stringify(response.headers))
+			response.setEncoding('utf8');
+			response.on('data', function(chunk){
+				console.log('BODY:', chunk)
+			})
+			// console.log(response);
+			// res.json(response);
+		})
+
+		request.write(postData);
+		request.end()
+
+		// http.post('https://api.sparkpost.com/api/v1?recipients=johnhalbert@gmail.com&return_path=signup@email.teachy.co&template_id=verify-email')
+
+
+
 	}
 }
