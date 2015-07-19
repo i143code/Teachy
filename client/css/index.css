@@ -1,12 +1,115 @@
+
+
+#discription{
+	background: blue;
+  position: absolute; 
+    width: 400px;  
+    height: 250px;
+    background: black; 
+    color:white;
+    margin-left: 200px;
+    margin-top: 100px;
+    padding: 30px;
+    opacity: 0.6;
+    background-color:rgba(255,0,0,0.5);
+
+}
+#main{
+	width: auto;
+	display: inline-block;
+}
+#main1{
+	margin-left: 600px;
+	margin-top: 10px;
+	display: inline;
+}
+#main2{
+	display: inline;
+}
 #Connect{
   background: blue;
   position: absolute; 
-    width: 40px; 
-    right: 0; 
-    top: 0; 
-    bottom: 0; 
+    width: 400px;  
+    height: 250px;
     background: black; 
-    color:white
+    color:white;
+    margin-left: 800px;
+    margin-top: 100px;
+    padding: 30px;
+    opacity: 0.6;
+    background-color:rgba(255,0,0,0.5);
 
 
 }
+
+/*footer stuff*/
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+#message{
+  
+  position: absolute; 
+    width: 600px;  
+    height: 250px;
+    color:black;
+    margin-left: 400px;
+    margin-top:400px;
+    padding: 30px;
+   
+
+    }  
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    width: 100%;
+    margin: auto;
+    height: 50vh;
+  }
+      
+.vcenter {
+    position: absolute;
+    height:50%;
+    width:40%;
+    top:10%;
+    bottom:50%;
+    margin-top: 10px;  
+    right:10%; /* adjust the position here, use the LEFT or RIGHT options */
+}
+.v-center {
+    position: absolute;
+    height:40%;
+    top:10%;
+    bottom:50%;
+    margin-top: 10px; 
+    left:10%; /* adjust the position here, use the LEFT or RIGHT options */
+}    
+.borders {
+    border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border: 2px solid #000000;
+    background-color: rgba(255,255,255,0.4);/* adjust the div transparency here*/
+}
+.borders2 {
+    border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border: 2px solid #000000;
+    background-color: rgba(100,000,100,0.4);/* adjust the div transparency here*/
+}    
+.bg-select {
+    background-color: rgba(00,00,255,0.3); /* adjust the transparency for the dropdown here*/
+    width:50%; /* adjust the dropdown width here*/
+    color:#fff;
+}
+.text-clr {
+    color:#fff;
+}
+.text-clr2 {
+    color:#4c4cff;
+}    
