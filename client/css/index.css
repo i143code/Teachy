@@ -38,15 +38,40 @@
 	background-color: yellow;
 }
 
+#settings{
+   margin-top:750px;
+}
+
+#email{
+
+    margin-left: 200px;
+    margin-top: 100px;
+}
+
 #main{
 	width: auto;
 	display: inline-block;
 
 }
 #main1{
-	margin-left: 600px;
+ 	margin-left: 600px;
 	margin-top: 10px;
 	display: inline;
+}
+
+#messagebox{
+    width: 800px;
+    height:600px;
+    background-color: yellow;
+    margin-left: 100px;
+    
+
+}
+
+#search{
+width: 900px;
+height: 60px;
+
 }
 #main2{
 	display: inline;
@@ -67,14 +92,28 @@
 
 }
 #blue{
-margin-left: 200px;
+width: 1200px;
+height: 800px;
 background-color: blue;
+
 
 }
 #red{
     background-color: red;
+    width: 250px;
+    height: 800px;
+   
 
 }
+
+#bluebutton{
+    margin-left: 540px;
+}
+#messagebox{
+
+
+}
+
 #body1{
     margin-left: 200px;
     margin-top: 50px;
