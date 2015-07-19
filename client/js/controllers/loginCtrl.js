@@ -37,7 +37,7 @@ teachy.controller('loginCtrl', function(socket, $scope, $routeParams, loginFacto
 			if (success.error) {
 				$scope.error = success.error;
 			} else if (success) {
-				$window.location.href = '#/checkemail';
+				$window.location.href = '#/confirm';
 			}
 		})
 	}
