@@ -7,9 +7,27 @@ module.exports = {
 	retrieveDistrict: function(req, res){
 		District.findOne({_id: req.params.id}, function(err, district){
 			if (err) {
-				console.log('Error retrieving district:', err)
+				console.log('Error retrieving district (1):', err)
 			} else {
-				res.json(district);
+				Teacher.populate(docs, {
+					path: 'channels.users',
+					select: 'first_name last_name'
+				}, function(err, district){
+					if (err) {
+						console.log('Error retrieving district (2):', err);
+					} else {
+						Teacher.populate(docs, {
+							path: 'teachers',
+							select: 'first_name last_name'
+						}, function(err, district){
+							if (err) {
+								console.log('Error retrieving district (3):', err)
+							} else {
+								res.json(district);
+							}
+						})
+					}
+				})
 			}
 		})
 	},
