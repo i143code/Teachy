@@ -33,13 +33,15 @@
 }
 
 p {
-    font-family: "Times New Roman", Times, serif;
+    font-family: "Arial", Gadget, sans-serif;
+    font-size: 18px;
+    color: white;
 }
 h1 {
     font-family: "Arial Black", Gadget, sans-serif;
 }
 #discription{
-	/*background: blue;
+    /*background: blue;
   position: absolute; 
     width: 400px;  
     height: 250px;
@@ -54,8 +56,8 @@ h1 {
 }
 
 #maincontainer {
-	/*background: url("../images/background.png");*/
-	background-color: yellow;
+    /*background: url("../images/background.png");*/
+    background-color: yellow;
 }
 
 #settings{
@@ -69,22 +71,22 @@ h1 {
 }
 
 #main{
-	width: auto;
-	display: inline-block;
+    width: auto;
+    display: inline-block;
     margin-top: -15px;
 
 
 }
 #main1{
- 	margin-left: 600px;
-	margin-top: 10px;
-	display: inline;
+    margin-left: 600px;
+    margin-top: 10px;
+    display: inline;
 }
 
 #messagebox{
     width: 800px;
     height:600px;
-    background-color: yellow;
+    background-color: white;
     margin-left: 100px;
     
 
@@ -115,7 +117,7 @@ h1 {
 }
 
 #left{
-    background-color: #03A7FF;
+    background-color: #009EC2;
     height: 100%;
 }
 
@@ -128,7 +130,7 @@ h1 {
 }
 
 #main2{
-	display: inline;
+    display: inline;
 }
 #middlebutton{
   margin-left: 50px;
@@ -186,8 +188,11 @@ font-size: 20px;
     margin-top: -20px;
     color: white;
 }
-#setting{
 
+#setting {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 #blue{
@@ -303,4 +308,26 @@ padding-top: 10px
 
 
 
+}
+
+.left-chat-column{
+    background-color: #009ec2;
+}
+
+.mini-icon{
+    margin-right: 10px;
+}
+
+.btn-primary {
+  border: none !important;
+  background-color: #009EC2 !important;
+}
+
+.btn-default {
+    color: white !important;
+  background-color: #009EC2 !important;
+}
+
+.input-group{
+    bottom: 0;
 }

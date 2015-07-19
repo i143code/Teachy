@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 // Set up DB
 
 require('./config/mongoose.js');
- // require('./config/sinc.js')
+// require('./config/sinch.js');
 
 // Set up express, set up 
 
