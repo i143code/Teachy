@@ -92,33 +92,16 @@ height: 60px;
 
 
 }
-<<<<<<< HEAD
+
 #blue{
 width: 800px;
-=======
-/*#blue{
-width: 1200px;
->>>>>>> 6de947330e54c3da2cadaaaebc35d91924a8435e
-height: 800px;
-background-color: blue;
-
 
 }
-#red{
-    background-color: red;
-    width: 250px;
-    height: 800px;
-   
 
-}*/
+#row1{
+margin-left: 200px;
 
-#bluebutton{
-    margin-left: 540px;
 }
-/*#messagebox{
-
-
-}*/
 
 #body1{
     margin-left: 200px;
