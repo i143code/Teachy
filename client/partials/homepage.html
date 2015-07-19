@@ -4,6 +4,10 @@
     $('#myInput').focus()
   })
 
+  $('#staffModal').on('shown.bs.modal', function () {
+    $('#staffInput').focus()
+  })
+
  $("#chatMain").scrollTop($("#chatMain")[0].scrollHeight);
 
 </script>
@@ -22,7 +26,7 @@
       <a href="#" ><span class="glyphicon glyphicon-plus"></span> Create new direct message</a><br><br><br>
         <div id="setting">
           <font size = "3">
-          <a href="#" ><img src="../images/directory.png" height="40px" width="34px" class = "mini-icon"> Staff Directory</a><font size="1"><br /><br /></font>
+          <a href="#/homepage" data-toggle="modal" data-target="#staffModal"><img src="../images/directory.png" height="40px" width="34px" class = "mini-icon"> Staff Directory</a><font size="1"><br /><br /></font>
           <a href="#" ><img src="../images/setting.png" height="40px" width="40px" class = "mini-icon">Settings</a><font size="1"><br /><br /></font>
           </font>
         </div>
@@ -78,6 +82,43 @@
       <div class="modal-body">
         <p></p>
         <input type='text' placeholder='Room Name' ng-model='newChannel.name' class='form-control' />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click='createChannel()'>Create Channel</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="staffModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Staff Directory</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-inline">
+          <p>
+          <input class="input-xxlarge" type="text" placeholder="search">
+            <button type="button" class="btn btn-primary">My School</button>
+            <button type="button" class="btn btn-primary">My Distric</button>
+          </p>
+        </form>
+        <div id='staffList'>
+           <ul>
+              <li>Person 1</li>
+              <li>Person 1</li>
+              <li>Person 1</li>
+           </ul>
+        </div>
+
+      <!-- invite to topic -->
+        <form>
+        <button type="button" class="btn btn-primary">Invite to Topic</button>
+        </form>
+        <p>Somrthing missing? Invite them !</p>
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click='createChannel()'>Create Channel</button>

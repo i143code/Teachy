@@ -1,3 +1,4 @@
+var http = require('http');
 var mongoose = require('mongoose');
 
 var Teacher = mongoose.model('Teacher');
@@ -112,5 +113,21 @@ module.exports = {
 				res.json(teacher);
 			}
 		})
+	},
+	signupTeacher: function(req, res){
+		var options = {
+			method: 'POST',
+			host: 'https://api.sparkpost.com/api/v1?recipients='+req.body.userEmail+'&return_path=signup@email.teachy.co&template_id=verify-email',
+			headers: {
+				'Content-type': 'application/json',
+				'Authorization': 'bb131006635c2ed2e5517ac52b6890f51d41787e'
+			}
+		}
+
+		var req = http.request(options, function(response){
+			console.log(response);
+			res.json(response);
+		})
+
 	}
 }

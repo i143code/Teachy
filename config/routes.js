@@ -22,6 +22,10 @@ module.exports = function(app){
 		TeacherController.loginTeacher(req, res);
 	})
 
+	app.post('/signup', function(req, res){
+		TeacherController.signupTeacher(req, res);
+	})
+
 	// Channel Routes
 	app.post('/channels/:district/new', function(req, res){
 		// For creating a room that doesn't exist
