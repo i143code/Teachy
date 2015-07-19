@@ -1,3 +1,83 @@
+
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<style>
+body{
+
+
+
+}
+#message{
+  
+  position: absolute; 
+    width: 600px;  
+    height: 250px;
+    color:black;
+    margin-left: 400px;
+    margin-top:400px;
+    padding: 30px;
+   
+
+    }  
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    width: 100%;
+    margin: auto;
+    height: 50vh;
+  }
+      
+.vcenter {
+    position: absolute;
+    height:50%;
+    width:40%;
+    top:10%;
+    bottom:50%;
+    margin-top: 10px;  
+    right:10%; /* adjust the position here, use the LEFT or RIGHT options */
+}
+.v-center {
+    position: absolute;
+    height:40%;
+    top:10%;
+    bottom:50%;
+    margin-top: 10px; 
+    left:10%; /* adjust the position here, use the LEFT or RIGHT options */
+}    
+.borders {
+    border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border: 2px solid #000000;
+    background-color: rgba(255,255,255,0.4);/* adjust the div transparency here*/
+}
+.borders2 {
+    border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border: 2px solid #000000;
+    background-color: rgba(100,000,100,0.4);/* adjust the div transparency here*/
+}    
+.bg-select {
+    background-color: rgba(00,00,255,0.3); /* adjust the transparency for the dropdown here*/
+    width:50%; /* adjust the dropdown width here*/
+    color:#fff;
+}
+.text-clr {
+    color:#fff;
+}
+.text-clr2 {
+    color:#4c4cff;
+}    
+</style>
+</head>
+<body>
+
+    
 <div class="container col-lg-10 col-lg-offset-1">
     <br>
     <div id="myCarousel" class="carousel slide " data-ride="carousel">
@@ -98,16 +178,25 @@
     <p> ashish_anhi@yahoo@gmail.com</p>
     <!-- button -->
       <div class="btn-group" data-toggle="buttons">
+
       <form method="get" action="/page2">
-      <p><button type="button" class="btn btn-primary btn-lg" href=>Yep.you got it!</button></p>
+      <p> <a href="#/signup2"><button type="button" class="btn btn-primary btn-lg" href=>Yep.you got it!</button></a></p>
     </form>
+
+    <form >
      <p> <button type="button" class="btn btn-primary btn-lg">I would Like to use a different email</button></p>
+     </form>
   </div>
 
+<!-- href=#/ -->
 
 
 
    </div>
+
+
+</body>
+
 
 
 

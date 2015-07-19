@@ -48,7 +48,32 @@
 
 
 }
+#blue{
+margin-left: 200px;
+background-color: blue;
 
+}
+#red{
+    background-color: red;
+
+}
+#body1{
+    margin-left: 200px;
+    margin-top: 50px;
+  /*  background-color: red;*/
+
+
+}
+
+#body2{
+    margin-left: 200px;
+    margin-top: 50px;
+
+}
+#body3{
+     margin-left: 200px;
+    margin-top: 50px;
+}
 /*footer stuff*/
 .footer {
   position: absolute;
